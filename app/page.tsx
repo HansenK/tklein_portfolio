@@ -6,7 +6,7 @@ import Link from "next/link";
 const Page = () => {
   return (
     <div className="flex justify-center items-center h-screen dark:bg-gray-950 relative">
-      <Card className="min-w-[600px] min-h-[250px] backdrop-blur-xs shadow-2x bg-[rgba(0,0,0,0.10)] border border-gray-300 dark:border-gray-800 dark:bg-[rgba(255,255,255,0.05)] rounded-md">
+      <Card className="min-w-[600px] min-h-[250px] backdrop-blur-xs shadow-2x bg-[rgba(0,0,0,0.05)] border border-gray-300 dark:border-gray-800 dark:bg-[rgba(255,255,255,0.05)] rounded-sm">
         <CardContent className="grow flex flex-row gap-14 items-center">
           <Avatar className="rounded-full size-52 border-2 border-gray-300 dark:border-gray-800">
             <AvatarImage src="/profile.jpg" />

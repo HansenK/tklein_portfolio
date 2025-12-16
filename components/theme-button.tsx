@@ -5,6 +5,7 @@ import { useTheme } from "next-themes";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Moon02Icon, Sun03Icon } from "@hugeicons/core-free-icons";
 import { useEffect, useState } from "react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 const ThemeButton = () => {
   const { setTheme, theme } = useTheme();
@@ -29,14 +30,21 @@ const ThemeButton = () => {
   }
 
   return (
-    <Button
-      size="icon"
-      variant="outline"
-      className="absolute top-4 right-4"
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-    >
-      <HugeiconsIcon icon={theme === "dark" ? Moon02Icon : Sun03Icon} />
-    </Button>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          size="icon"
+          variant="outline"
+          className="absolute top-4 right-4"
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        >
+          <HugeiconsIcon icon={theme === "light" ? Moon02Icon : Sun03Icon} />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>Change to {theme === "light" ? "dark" : "light"} mode</p>
+      </TooltipContent>
+    </Tooltip>
   );
 };
 
