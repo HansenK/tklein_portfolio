@@ -33,7 +33,7 @@ const ThemeButton = () => {
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
-          size="icon"
+          size="icon-lg"
           variant="outline"
           className="absolute top-4 right-4"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
