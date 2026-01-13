@@ -12,7 +12,7 @@ import Link from "next/link";
 const Page = () => {
   return (
     <div className="flex justify-center items-center h-screen relative">
-      <Card className="pointer-events-auto relative z-10 w-[90vw] max-w-fit min-h-fit backdrop-blur-sm shadow-2x bg-[rgba(0,0,0,0.1)] dark:bg-[rgba(255,255,255,0.1)] rounded-md">
+      <Card className="pointer-events-auto relative z-10 w-[90vw] max-w-fit min-h-fit backdrop-blur-sm shadow-2xl bg-[rgba(0,0,0,0.1)] dark:bg-[rgba(255,255,255,0.1)] rounded-md">
         <CardContent className="grow flex flex-col md:flex-row gap-6 md:gap-14 items-center text-center md:text-left">
           <Avatar className="rounded-full size-32 md:size-52">
             <AvatarImage src="/profile.jpg" />
