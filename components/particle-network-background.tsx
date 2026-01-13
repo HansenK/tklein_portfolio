@@ -1,65 +1,61 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import ParticleNetwork from "particle_network";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
 import { useTheme } from "next-themes";
+import type { ISourceOptions } from "@tsparticles/engine";
 
-interface ParticleNetworkBackgroundProps {
-  numberOfParticles?: number;
-  gridCellSize?: number;
-  mouseConnectionRange?: number;
-}
-
-const ParticleNetworkBackground = ({
-  numberOfParticles,
-  gridCellSize,
-  mouseConnectionRange,
-}: ParticleNetworkBackgroundProps) => {
+const ParticleNetworkBackground = () => {
   const { theme } = useTheme();
-  const [canvas, setCanvas] = useState<HTMLCanvasElement | null>(null);
-  const [particleNetwork, setParticleNetwork] = useState<any>(null); // TODO: Fix this type
+  const [init, setInit] = useState(false);
 
-  const particleColor = useMemo(
-    () => (theme === "dark" ? "rgba(191, 191, 191, 1)" : "rgba(0, 0, 0, 1)"),
-    [theme]
-  );
-  const backgroundColor = useMemo(
-    () => (theme === "dark" ? "rgba(0, 0, 0, 1)" : "rgba(255, 255, 255, 1)"),
-    [theme]
-  );
+  const particleColor = theme === "dark" ? "#bfbfbf" : "#000000";
+  const backgroundColor = theme === "dark" ? "#000000" : "#ffffff";
 
   useEffect(() => {
-    if (canvas && !particleNetwork) {
-      const newParticleNetwork = new ParticleNetwork(canvas, {
-        numberOfParticles,
-        gridCellSize,
-        mouseConnectionRange,
-        particleColor,
-        backgroundColor,
-      });
-      newParticleNetwork.start();
-      setParticleNetwork(newParticleNetwork);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [canvas]);
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    }).then(() => setInit(true));
+  }, []);
 
-  useEffect(() => {
-    if (particleNetwork) {
-      particleNetwork.setColors({
-        particleColor,
-        backgroundColor,
-      });
-    }
-  }, [particleNetwork, particleColor, backgroundColor]);
-
-  return (
-    <canvas
-      ref={setCanvas}
-      width={500}
-      height={500}
-      className="absolute top-0 left-0"
-    />
+  const options: ISourceOptions = useMemo(
+    () => ({
+      fullScreen: { enable: true, zIndex: 0 },
+      background: { color: { value: backgroundColor } },
+      fpsLimit: 120,
+      detectRetina: true,
+      interactivity: {
+        detectsOn: "canvas",
+        events: { onHover: { enable: true, mode: "grab" } },
+        modes: { grab: { distance: 175, links: { opacity: 1 } } },
+      },
+      particles: {
+        color: { value: particleColor },
+        links: {
+          color: particleColor,
+          distance: 175,
+          enable: true,
+          opacity: 0.4,
+          width: 1,
+        },
+        move: {
+          enable: true,
+          outModes: { default: "bounce" },
+          speed: 1.5,
+        },
+        number: { density: { enable: true, area: 1000 }, value: 120 },
+        opacity: { value: 0.5 },
+        shape: { type: "circle" },
+        size: { value: { min: 1, max: 4 } },
+      },
+    }),
+    [particleColor, backgroundColor]
   );
+
+  if (!init) return null;
+
+  return <Particles options={options} />;
 };
 
 export default ParticleNetworkBackground;

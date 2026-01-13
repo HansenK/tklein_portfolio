@@ -7,12 +7,8 @@ import Link from "next/link";
 const Page = () => {
   return (
     <div className="flex justify-center items-center h-screen relative">
-      <ParticleNetworkBackground
-        numberOfParticles={150}
-        gridCellSize={25}
-        mouseConnectionRange={150}
-      />
-      <Card className="min-w-[650px] min-h-[250px] backdrop-blur-sm shadow-2x bg-[rgba(0,0,0,0.1)] dark:bg-[rgba(255,255,255,0.1)] rounded-md">
+      <ParticleNetworkBackground />
+      <Card className="relative z-10 min-w-[650px] min-h-[250px] backdrop-blur-sm shadow-2x bg-[rgba(0,0,0,0.1)] dark:bg-[rgba(255,255,255,0.1)] rounded-md">
         <CardContent className="grow flex flex-row gap-14 items-center">
           <Avatar className="rounded-full size-52">
             <AvatarImage src="/profile.jpg" />

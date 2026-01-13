@@ -21,7 +21,7 @@ const ThemeButton = () => {
       <Button
         size="icon"
         variant="outline"
-        className="absolute top-4 right-4"
+        className="absolute z-10 top-4 right-4"
         disabled
       >
         <HugeiconsIcon icon={Sun03Icon} />
@@ -35,7 +35,7 @@ const ThemeButton = () => {
         <Button
           size="icon-lg"
           variant="outline"
-          className="absolute top-4 right-4"
+          className="absolute z-10 top-4 right-4"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         >
           <HugeiconsIcon icon={theme === "light" ? Moon02Icon : Sun03Icon} />
