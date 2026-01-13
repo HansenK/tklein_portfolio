@@ -28,22 +28,40 @@ const Page = () => {
             </div>
 
             <nav className="flex flex-col md:flex-row justify-center md:justify-start gap-3 items-center">
-              <Link className="flex items-center gap-1.5 text-sm transition-colors outline-none hover:text-primary focus:text-primary active:text-primary active:brightness-125" href="/about">
+              <Link
+                className="flex items-center gap-1.5 text-sm transition-colors outline-none hover:text-primary focus:text-primary active:text-primary active:brightness-125"
+                href="/about"
+              >
                 <HugeiconsIcon icon={User03Icon} size={16} />
                 About
               </Link>
-              <span aria-hidden="true" className="hidden md:block">|</span>
-              <Link className="flex items-center gap-1.5 text-sm transition-colors outline-none hover:text-primary focus:text-primary active:text-primary active:brightness-125" href="/products">
+              <span aria-hidden="true" className="hidden md:block">
+                |
+              </span>
+              <Link
+                className="flex items-center gap-1.5 text-sm transition-colors outline-none hover:text-primary focus:text-primary active:text-primary active:brightness-125"
+                href="/products"
+              >
                 <HugeiconsIcon icon={ShoppingBag01Icon} size={16} />
                 Products
               </Link>
-              <span aria-hidden="true" className="hidden md:block">|</span>
-              <Link className="flex items-center gap-1.5 text-sm transition-colors outline-none hover:text-primary focus:text-primary active:text-primary active:brightness-125" href="/projects">
+              <span aria-hidden="true" className="hidden md:block">
+                |
+              </span>
+              <Link
+                className="flex items-center gap-1.5 text-sm transition-colors outline-none hover:text-primary focus:text-primary active:text-primary active:brightness-125"
+                href="/projects"
+              >
                 <HugeiconsIcon icon={Folder01Icon} size={16} />
                 Projects
               </Link>
-              <span aria-hidden="true" className="hidden md:block">|</span>
-              <Link className="flex items-center gap-1.5 text-sm transition-colors outline-none hover:text-primary focus:text-primary active:text-primary active:brightness-125" href="/blog">
+              <span aria-hidden="true" className="hidden md:block">
+                |
+              </span>
+              <Link
+                className="flex items-center gap-1.5 text-sm transition-colors outline-none hover:text-primary focus:text-primary active:text-primary active:brightness-125"
+                href="/blog"
+              >
                 <HugeiconsIcon icon={BloggerIcon} size={16} />
                 Blog
               </Link>
