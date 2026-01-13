@@ -5,6 +5,7 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import { useTheme } from "next-themes";
 import type { ISourceOptions } from "@tsparticles/engine";
+import ThemeButton from "./theme-button";
 
 const ParticleNetworkBackground = () => {
   const { theme } = useTheme();
@@ -55,7 +56,12 @@ const ParticleNetworkBackground = () => {
 
   if (!init) return null;
 
-  return <Particles options={options} />;
+  return (
+    <>
+      <Particles options={options} />
+      <ThemeButton />
+    </>
+  );
 };
 
 export default ParticleNetworkBackground;

@@ -19,10 +19,10 @@ const ThemeButton = () => {
   if (!mounted) {
     return (
       <Button
+        disabled
         size="icon"
         variant="outline"
-        className="absolute z-10 top-4 right-4"
-        disabled
+        className="pointer-events-auto absolute z-10 top-4 right-4"
       >
         <HugeiconsIcon icon={Sun03Icon} />
       </Button>
@@ -35,7 +35,7 @@ const ThemeButton = () => {
         <Button
           size="icon-lg"
           variant="outline"
-          className="absolute z-10 top-4 right-4"
+          className="pointer-events-auto absolute z-10 top-4 right-4"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         >
           <HugeiconsIcon icon={theme === "light" ? Moon02Icon : Sun03Icon} />
