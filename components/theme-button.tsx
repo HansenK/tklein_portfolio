@@ -36,7 +36,13 @@ const ThemeButton = () => {
           size="icon-lg"
           variant="outline"
           className="pointer-events-auto absolute z-10 top-4 right-4"
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          onClick={() => {
+            const scrollY = window.scrollY;
+            setTheme(theme === "dark" ? "light" : "dark");
+            requestAnimationFrame(() => {
+              window.scrollTo(0, scrollY);
+            });
+          }}
         >
           <HugeiconsIcon icon={theme === "light" ? Moon02Icon : Sun03Icon} />
         </Button>
