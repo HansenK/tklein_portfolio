@@ -46,39 +46,73 @@ const ProjectsPage = () => {
                 No projects yet. Check back soon!
               </p>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {publishedProjects.map((project) => (
+              <div className="flex flex-col gap-6">
+                {publishedProjects.map((project, index) => (
                   <Card
                     key={project.slug}
                     className="overflow-hidden group hover:ring-primary/50 transition-all"
                   >
-                    {project.cover && (
-                      <div className="relative aspect-video bg-muted overflow-hidden">
-                        <Image
-                          fill
-                          alt={project.title}
-                          className="object-cover transition-transform group-hover:scale-105"
-                          src={project.cover}
-                        />
+                    <div
+                      className={`flex flex-col md:flex-row ${
+                        index % 2 === 1 ? "md:flex-row-reverse" : ""
+                      }`}
+                    >
+                      {/* Image Section */}
+                      <div className="relative w-full md:w-1/2 aspect-video md:aspect-auto md:min-h-[200px] bg-muted overflow-hidden">
+                        {project.cover ? (
+                          <Image
+                            fill
+                            alt={project.title}
+                            className="object-cover transition-transform group-hover:scale-105"
+                            src={project.cover}
+                          />
+                        ) : (
+                          <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+                            No image
+                          </div>
+                        )}
                       </div>
-                    )}
-                    <CardHeader>
-                      <CardTitle className="text-lg">{project.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="flex flex-col gap-3">
-                      <p className="text-sm text-muted-foreground line-clamp-2">
-                        {project.description}
-                      </p>
-                      {project.blogPost && (
-                        <Link
-                          className="flex items-center gap-1 text-sm text-primary hover:underline w-fit"
-                          href={`/blog/${project.blogPost}`}
-                        >
-                          Read more
-                          <HugeiconsIcon icon={ArrowRight01Icon} size={14} />
-                        </Link>
-                      )}
-                    </CardContent>
+
+                      {/* Content Section */}
+                      <div
+                        className={`flex flex-col justify-center w-full md:w-1/2 p-6 ${
+                          index % 2 === 1 ? "md:text-right md:items-end" : ""
+                        }`}
+                      >
+                        <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                          {project.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground mb-4">
+                          {project.description}
+                        </p>
+                        {project.blogPost && (
+                          <Link
+                            className={`flex items-center gap-1 text-sm text-primary hover:underline w-fit ${
+                              index % 2 === 1 ? "flex-row-reverse" : ""
+                            }`}
+                            href={`/blog/${project.blogPost}`}
+                          >
+                            {index % 2 === 1 ? (
+                              <>
+                                Read more
+                                <HugeiconsIcon
+                                  icon={ArrowLeft01Icon}
+                                  size={14}
+                                />
+                              </>
+                            ) : (
+                              <>
+                                Read more
+                                <HugeiconsIcon
+                                  icon={ArrowRight01Icon}
+                                  size={14}
+                                />
+                              </>
+                            )}
+                          </Link>
+                        )}
+                      </div>
+                    </div>
                   </Card>
                 ))}
               </div>
