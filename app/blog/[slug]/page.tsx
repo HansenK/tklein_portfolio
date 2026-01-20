@@ -3,9 +3,9 @@ import { MDXContent } from "@/components/mdx-components";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowLeft01Icon, Calendar02Icon } from "@hugeicons/core-free-icons";
+import { Calendar02Icon } from "@hugeicons/core-free-icons";
 import type { Metadata } from "next";
-import Link from "next/link";
+import Navbar from "@/components/navbar";
 import { notFound } from "next/navigation";
 
 interface PostPageProps {
@@ -59,18 +59,12 @@ const PostPage = async ({ params }: PostPageProps) => {
   }
 
   return (
-    <div className="flex flex-col items-center min-h-screen py-12 px-4">
-      <div className="w-full max-w-3xl">
-        <Card className="pointer-events-auto relative z-10 backdrop-blur-sm shadow-2xl bg-[rgba(0,0,0,0.1)] dark:bg-[rgba(255,255,255,0.1)] rounded-md">
-          <CardHeader className="border-b">
-            <div className="flex flex-col gap-4">
-              <Link
-                className="flex items-center gap-2 text-sm transition-colors outline-none hover:text-primary focus:text-primary w-fit"
-                href="/blog"
-              >
-                <HugeiconsIcon icon={ArrowLeft01Icon} size={18} />
-                Back to Blog
-              </Link>
+    <>
+      <Navbar />
+      <div className="flex flex-col items-center min-h-screen pt-20 pb-12 px-4">
+        <div className="w-full max-w-3xl">
+          <Card className="pointer-events-auto relative z-10 backdrop-blur-sm shadow-2xl bg-[rgba(0,0,0,0.1)] dark:bg-[rgba(255,255,255,0.1)] rounded-md">
+            <CardHeader className="border-b">
               <div className="flex flex-col gap-2">
                 <CardTitle className="text-2xl md:text-3xl">
                   {post.title}
@@ -92,16 +86,16 @@ const PostPage = async ({ params }: PostPageProps) => {
                   </div>
                 )}
               </div>
-            </div>
-          </CardHeader>
-          <CardContent className="pt-6">
-            <article className="prose prose-sm dark:prose-invert max-w-none">
-              <MDXContent code={post.body} />
-            </article>
-          </CardContent>
-        </Card>
+            </CardHeader>
+            <CardContent className="pt-3">
+              <article className="prose prose-sm dark:prose-invert max-w-none">
+                <MDXContent code={post.body} />
+              </article>
+            </CardContent>
+          </Card>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

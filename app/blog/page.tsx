@@ -8,8 +8,9 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowLeft01Icon, Calendar02Icon } from "@hugeicons/core-free-icons";
+import { Calendar02Icon } from "@hugeicons/core-free-icons";
 import Link from "next/link";
+import Navbar from "@/components/navbar";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -31,26 +32,18 @@ const BlogPage = () => {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
-    <div className="flex flex-col items-center min-h-screen py-12 px-4">
+    <>
+      <Navbar />
+      <div className="flex flex-col items-center min-h-screen pt-20 pb-12 px-4">
       <div className="w-full max-w-3xl">
         <Card className="pointer-events-auto relative z-10 backdrop-blur-sm shadow-2xl bg-[rgba(0,0,0,0.1)] dark:bg-[rgba(255,255,255,0.1)] rounded-md">
           <CardHeader className="border-b">
-            <div className="flex items-center gap-4">
-              <Link
-                className="flex items-center gap-2 text-sm transition-colors outline-none hover:text-primary focus:text-primary"
-                href="/"
-              >
-                <HugeiconsIcon icon={ArrowLeft01Icon} size={18} />
-              </Link>
-              <div>
-                <CardTitle className="text-2xl">Blog</CardTitle>
-                <CardDescription>
-                  Thoughts, tutorials, and updates
-                </CardDescription>
-              </div>
-            </div>
+            <CardTitle className="text-2xl">Blog</CardTitle>
+            <CardDescription>
+              Thoughts, tutorials, and updates
+            </CardDescription>
           </CardHeader>
-          <CardContent className="flex flex-col gap-4 pt-4">
+          <CardContent className="flex flex-col gap-4 pt-3">
             {publishedPosts.length === 0 ? (
               <p className="text-center text-muted-foreground py-8">
                 No posts yet. Check back soon!
@@ -94,6 +87,7 @@ const BlogPage = () => {
         </Card>
       </div>
     </div>
+    </>
   );
 };
 
