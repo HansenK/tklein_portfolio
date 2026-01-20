@@ -12,11 +12,11 @@ const Heading1 = (props: React.HTMLAttributes<HTMLHeadingElement>) => (
 );
 
 const Heading2 = (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-  <h2 className="text-2xl font-semibold mt-6 mb-3 text-primary/90" {...props} />
+  <h2 className="text-2xl font-semibold mt-6 mb-3 text-secondary" {...props} />
 );
 
 const Heading3 = (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-  <h3 className="text-xl font-semibold mt-5 mb-2 text-primary/80" {...props} />
+  <h3 className="text-xl font-semibold mt-5 mb-2 text-primary/90" {...props} />
 );
 
 const Paragraph = (props: React.HTMLAttributes<HTMLParagraphElement>) => (
@@ -32,7 +32,7 @@ const OrderedList = (props: React.HTMLAttributes<HTMLOListElement>) => (
 );
 
 const ListItem = (props: React.HTMLAttributes<HTMLLIElement>) => (
-  <li className="ml-4 text-foreground/80 flex items-start gap-2 before:content-['▹'] before:text-primary before:font-bold" {...props} />
+  <li className="ml-4 text-foreground/80 flex items-start gap-2 before:content-['▹'] before:text-secondary before:font-bold" {...props} />
 );
 
 const Anchor = (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
@@ -46,21 +46,21 @@ const Anchor = (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
 
 const Code = (props: React.HTMLAttributes<HTMLElement>) => (
   <code
-    className="bg-primary/10 text-primary px-1.5 py-0.5 rounded text-sm font-mono"
+    className="bg-secondary/15 text-secondary px-1.5 py-0.5 rounded text-sm font-mono"
     {...props}
   />
 );
 
 const Pre = (props: React.HTMLAttributes<HTMLPreElement>) => (
   <pre
-    className="bg-muted/50 border border-primary/20 p-4 rounded-md overflow-x-auto mb-4 text-sm"
+    className="bg-muted/50 border border-secondary/30 p-4 rounded-md overflow-x-auto mb-4 text-sm"
     {...props}
   />
 );
 
 const Blockquote = (props: React.HTMLAttributes<HTMLQuoteElement>) => (
   <blockquote
-    className="border-l-4 border-primary pl-4 italic my-4 text-foreground/70 bg-primary/5 py-2 pr-4 rounded-r"
+    className="border-l-4 border-secondary pl-4 italic my-4 text-foreground/70 bg-secondary/10 py-2 pr-4 rounded-r"
     {...props}
   />
 );
@@ -69,7 +69,7 @@ const Strong = (props: React.HTMLAttributes<HTMLElement>) => (
   <strong className="font-semibold text-primary" {...props} />
 );
 
-const HorizontalRule = () => <hr className="my-8 border-primary/30" />;
+const HorizontalRule = () => <hr className="my-8 border-secondary/50" />;
 
 const components = {
   a: Anchor,
