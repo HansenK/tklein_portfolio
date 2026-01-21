@@ -14,6 +14,7 @@ import {
 } from "@hugeicons/core-free-icons";
 import { useTheme } from "next-themes";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const navLinks = [
@@ -27,6 +28,14 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { setTheme, theme } = useTheme();
+  const pathname = usePathname();
+
+  const isActiveLink = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
+    return pathname.startsWith(href);
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -59,7 +68,10 @@ const Navbar = () => {
               </span>
             )}
             <Link
-              className="flex items-center gap-1.5 text-sm transition-colors outline-none hover:text-primary focus:text-primary active:text-primary active:brightness-125"
+              className={cn(
+                "flex items-center gap-1.5 text-sm transition-colors outline-none hover:text-primary focus:text-primary",
+                isActiveLink(link.href) && "text-primary"
+              )}
               href={link.href}
             >
               <HugeiconsIcon icon={link.icon} size={16} />
