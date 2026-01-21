@@ -30,12 +30,15 @@ const Navbar = () => {
   const { setTheme, theme } = useTheme();
   const pathname = usePathname();
 
-  const isActiveLink = (href: string) => {
+  const isCurrentPage = (href: string) => {
     if (href === "/") {
       return pathname === "/";
     }
     return pathname.startsWith(href);
   };
+
+  // Filter out the current page from the nav links
+  const visibleLinks = navLinks.filter((link) => !isCurrentPage(link.href));
 
   useEffect(() => {
     setMounted(true);
@@ -60,7 +63,7 @@ const Navbar = () => {
             : "backdrop-blur-sm bg-[rgba(0,0,0,0.1)] dark:bg-[rgba(255,255,255,0.1)]"
         )}
       >
-        {navLinks.map((link, index) => (
+        {visibleLinks.map((link, index) => (
           <div key={link.href} className="flex items-center">
             {index > 0 && (
               <span aria-hidden="true" className="mx-2 text-muted-foreground">
@@ -68,10 +71,7 @@ const Navbar = () => {
               </span>
             )}
             <Link
-              className={cn(
-                "flex items-center gap-1.5 text-sm transition-colors outline-none hover:text-primary focus:text-primary",
-                isActiveLink(link.href) && "text-primary"
-              )}
+              className="flex items-center gap-1.5 text-sm transition-colors outline-none hover:text-primary focus:text-primary"
               href={link.href}
             >
               <HugeiconsIcon icon={link.icon} size={16} />
