@@ -64,7 +64,7 @@ const PostPage = async ({ params }: PostPageProps) => {
       <div className="flex flex-col items-center min-h-screen pt-20 pb-12 px-4">
         <div className="w-full max-w-3xl">
           <Card className="pointer-events-auto relative z-10 backdrop-blur-sm shadow-2xl bg-[rgba(0,0,0,0.1)] dark:bg-[rgba(255,255,255,0.1)] rounded-md">
-            <CardHeader className="border-b">
+            <CardHeader className="border-b border-border">
               <div className="flex flex-col gap-2">
                 <CardTitle className="text-2xl md:text-3xl">
                   {post.title}
