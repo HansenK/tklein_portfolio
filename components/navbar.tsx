@@ -11,6 +11,7 @@ import {
   Moon02Icon,
   ShoppingBag01Icon,
   Sun03Icon,
+  User03Icon,
 } from "@hugeicons/core-free-icons";
 import { useTheme } from "next-themes";
 import Link from "next/link";
@@ -19,6 +20,7 @@ import { useEffect, useState } from "react";
 
 const navLinks = [
   { href: "/", icon: Home01Icon, label: "Home" },
+  { href: "/about", icon: User03Icon, label: "About" },
   { href: "/products", icon: ShoppingBag01Icon, label: "Products" },
   { href: "/projects", icon: Folder01Icon, label: "Projects" },
   { href: "/blog", icon: BloggerIcon, label: "Blog" },
