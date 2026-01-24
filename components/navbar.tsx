@@ -11,13 +11,16 @@ import {
   Moon02Icon,
   ShoppingBag01Icon,
   Sun03Icon,
+  User03Icon,
 } from "@hugeicons/core-free-icons";
 import { useTheme } from "next-themes";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const navLinks = [
   { href: "/", icon: Home01Icon, label: "Home" },
+  { href: "/about", icon: User03Icon, label: "About" },
   { href: "/products", icon: ShoppingBag01Icon, label: "Products" },
   { href: "/projects", icon: Folder01Icon, label: "Projects" },
   { href: "/blog", icon: BloggerIcon, label: "Blog" },
@@ -27,6 +30,17 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { setTheme, theme } = useTheme();
+  const pathname = usePathname();
+
+  const isCurrentPage = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
+    return pathname.startsWith(href);
+  };
+
+  // Filter out the current page from the nav links
+  const visibleLinks = navLinks.filter((link) => !isCurrentPage(link.href));
 
   useEffect(() => {
     setMounted(true);
@@ -51,7 +65,7 @@ const Navbar = () => {
             : "backdrop-blur-sm bg-[rgba(0,0,0,0.1)] dark:bg-[rgba(255,255,255,0.1)]"
         )}
       >
-        {navLinks.map((link, index) => (
+        {visibleLinks.map((link, index) => (
           <div key={link.href} className="flex items-center">
             {index > 0 && (
               <span aria-hidden="true" className="mx-2 text-muted-foreground">
@@ -59,7 +73,7 @@ const Navbar = () => {
               </span>
             )}
             <Link
-              className="flex items-center gap-1.5 text-sm transition-colors outline-none hover:text-primary focus:text-primary active:text-primary active:brightness-125"
+              className="flex items-center gap-1.5 text-sm transition-colors outline-none hover:text-primary focus:text-primary"
               href={link.href}
             >
               <HugeiconsIcon icon={link.icon} size={16} />
